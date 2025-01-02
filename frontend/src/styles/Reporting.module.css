@@ -1,0 +1,67 @@
+/
+  calendar-app
+  /
+  calendar-app
+  /
+  frontend
+  /
+  src
+  /
+  styles
+  /
+  Reporting.module.css
+  .container {
+  padding: 2rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.chart {
+  margin: 2rem 0;
+}
+
+.report-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 0.8rem;
+  text-align: left;
+}
+
+.table th {
+  background-color: #f2f2f2;
+}
+
+.highlight {
+  background-color: #ffeb3b; /* Yellow highlight */
+}
+
+.overdue {
+  background-color: #f44336; /* Red highlight */
+}
+
+.export-button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.export-button:hover {
+  background-color: #45a049;
+}

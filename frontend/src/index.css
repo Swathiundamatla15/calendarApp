@@ -1,0 +1,106 @@
+/* Tailwind base, components, and utilities */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom global styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #121212; /* Dark background color for the whole app */
+  color: #b3b3b3; /* Text color for readability */
+  font-family: 'Roboto', sans-serif; /* Clean font style */
+  margin: 0; /* Reset margin */
+  padding: 0; /* Reset padding */
+  min-height: 100vh; /* Ensure full viewport height */
+}
+
+a {
+  text-decoration: none;
+  color: inherit; /* Inherit text color from the parent */
+}
+
+button {
+  background-color: #1db954; /* Spotify Green */
+  color: white;
+  border-radius: 0.5rem; /* Rounded corners */
+  padding: 0.5rem 1.5rem;
+  transition: all 0.3s ease; /* Smooth hover transitions */
+}
+
+button:hover {
+  background-color: #14833b; /* Darker green on hover */
+}
+
+input,
+select,
+textarea {
+  background-color: #181818; /* Dark background for inputs */
+  color: #b3b3b3; /* Light text for readability */
+  border: 1px solid #3a3a3a; /* Subtle border */
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: #1db954; /* Highlight the border on focus */
+}
+
+/* Ensure full height layout */
+html,
+body {
+  height: 100%;
+}
+
+/* Remove unwanted spacing or padding in body */
+body > * {
+  margin: 0;
+}
+
+/* Smooth transition for background color on hover */
+main,
+footer {
+  transition: background-color 0.3s ease;
+}
+
+/* For header, footer, and main content sections */
+header,
+footer {
+  padding: 1rem 2rem;
+  background-color: #181818;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+footer {
+  text-align: center;
+  padding-top: 2rem;
+}
+/* Target the day labels (Sun, Mon, Tue, etc.) */
+.fc-col-header-cell {
+  color: #b3b3b3 !important; /* Set text color to a light shade (adjust as needed) */
+  background-color: #121212 !important; /* Set background to a dark color */
+}
+
+/* Ensure the calendar's header has enough contrast */
+.fc-toolbar {
+  background-color: #121212 !important; /* Set background to dark */
+  color: #b3b3b3 !important; /* Set text color to light */
+}
+
+/* Optional: Modify other parts of the calendar to ensure visibility */
+.fc-button {
+  color: #b3b3b3 !important; /* Button text color */
+  background-color: #333333 !important; /* Button background color */
+}
+
+.fc-button:hover {
+  background-color: #555555 !important; /* Hover effect for buttons */
+}
