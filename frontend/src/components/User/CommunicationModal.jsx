@@ -14,31 +14,51 @@ const CommunicationModal = ({
   const [notes, setNotes] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  useEffect(() => {
+    console.log('Received companyId:', companyId);
+    if (!companyId) {
+      console.error(
+        'Error: Missing companyId. Make sure it is passed from the parent component.'
+      );
+    }
+  }, [companyId]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Prevent submission if companyId is missing
+    if (!companyId) {
+      setErrorMessage('Company ID is missing! Please select a valid company.');
+      return;
+    }
+
     const communicationData = {
       companyId,
       type: communicationType,
       date,
       notes,
     };
-    console.log('Communication Data:', communicationData);
+
+    console.log('Submitting Communication Data:', communicationData);
+
     try {
       await logCommunication(communicationData);
-      setErrorMessage(''); // Clear any previous errors
-      onRequestClose(); // Close the modal after logging communication
+      setErrorMessage('');
+      onRequestClose();
     } catch (error) {
-      setErrorMessage(error.message); // Display error message in the modal
+      console.error('Error while logging communication:', error);
+      setErrorMessage(
+        error.message || 'An error occurred while logging communication.'
+      );
     }
   };
 
   useEffect(() => {
     if (existingCommunications) {
-      // Reset form if there are existing communications
       setCommunicationType('');
       setDate('');
       setNotes('');
-      setErrorMessage(''); // Reset error message
+      setErrorMessage('');
     }
   }, [existingCommunications, isOpen]);
 
@@ -59,6 +79,7 @@ const CommunicationModal = ({
         </div>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
+        {/* Communication Type */}
         <div className="mb-4">
           <label
             htmlFor="communicationType"
@@ -81,6 +102,8 @@ const CommunicationModal = ({
             <option value="Other">Other</option>
           </select>
         </div>
+
+        {/* Date Input */}
         <div className="mb-4">
           <label htmlFor="date" className="block text-lg mb-2 text-gray-300">
             Date:
@@ -94,6 +117,8 @@ const CommunicationModal = ({
             className="w-full p-3 bg-[#181818] border border-[#3a3a3a] rounded text-gray-300"
           />
         </div>
+
+        {/* Notes Section */}
         <div className="mb-4">
           <label htmlFor="notes" className="block text-lg mb-2 text-gray-300">
             Notes:
@@ -105,6 +130,8 @@ const CommunicationModal = ({
             className="w-full p-3 bg-[#181818] border border-[#3a3a3a] rounded text-gray-300"
           />
         </div>
+
+        {/* Action Buttons */}
         <div className="flex justify-end space-x-4">
           <button
             type="button"

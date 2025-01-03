@@ -19,7 +19,7 @@ router.delete("/:id", communicationController.deleteCommunication);
 router.put("/:id", communicationController.updateCommunication);
 
 // Route to get communication frequency by type
-router.get('/frequency', async (req, res) => {
+router.get("/frequency", async (req, res) => {
   const { company } = req.query;
 
   // Validate company ID if provided

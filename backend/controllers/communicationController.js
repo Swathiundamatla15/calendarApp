@@ -26,10 +26,14 @@ exports.logCommunication = async (req, res) => {
       $set: { nextCommunication: date },
     });
 
-    res.status(201).json({ message: "Communication logged successfully", communication });
+    res
+      .status(201)
+      .json({ message: "Communication logged successfully", communication });
   } catch (error) {
     console.error("Error logging communication:", error);
-    res.status(500).json({ message: "Error logging communication", error: error.message });
+    res
+      .status(500)
+      .json({ message: "Error logging communication", error: error.message });
   }
 };
 
@@ -97,17 +101,17 @@ exports.getCommunicationFrequency = async (req, res) => {
     const frequencyData = await Communication.aggregate([
       {
         $group: {
-          _id: "$type",  // Group by communication type
-          count: { $sum: 1 }  // Count occurrences of each type
-        }
+          _id: "$type", // Group by communication type
+          count: { $sum: 1 }, // Count occurrences of each type
+        },
       },
       {
         $project: {
-          _id: 0,  // Exclude the _id field
-          method: "$_id",  // Rename _id to method
-          count: 1  // Include the count field
-        }
-      }
+          _id: 0, // Exclude the _id field
+          method: "$_id", // Rename _id to method
+          count: 1, // Include the count field
+        },
+      },
     ]);
 
     if (frequencyData.length === 0) {
