@@ -9,5 +9,5 @@ connectDB();
 
 // Start the server
 app.listen(PORT, () => {
-  console.log(`Server is running on https://calendarapp-1.onrender.com`); // Use Render's URL here
+  console.log(`Server is running on https://calendarapp-1.onrender.com`); // Render URL
 });
