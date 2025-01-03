@@ -1,4 +1,5 @@
-const API_URL = 'http://localhost:5000/api'; // Ensure this URL is correct
+const API_URL = 'https://calendarapp-1.onrender.com/api';  // Replace with your actual Render backend URL
+
 
 // Fetch communications from the server
 export const fetchCommunications = async () => {
