@@ -1,9 +1,15 @@
 const Communication = require("../models/Communication");
 const Company = require("../models/Company");
+const mongoose = require("mongoose");
 
 // Log a new communication
 exports.logCommunication = async (req, res) => {
   const { companyId, type, date, notes } = req.body;
+
+  // Basic validation
+  if (!companyId || !type || !date) {
+    return res.status(400).json({ message: "Missing required fields" });
+  }
 
   try {
     const communication = new Communication({
@@ -20,11 +26,10 @@ exports.logCommunication = async (req, res) => {
       $set: { nextCommunication: date },
     });
 
-    res
-      .status(201)
-      .json({ message: "Communication logged successfully", communication });
+    res.status(201).json({ message: "Communication logged successfully", communication });
   } catch (error) {
-    res.status(500).json({ message: "Error logging communication", error });
+    console.error("Error logging communication:", error);
+    res.status(500).json({ message: "Error logging communication", error: error.message });
   }
 };
 
@@ -85,6 +90,7 @@ exports.updateCommunication = async (req, res) => {
     res.status(500).json({ message: "Error updating communication", error });
   }
 };
+
 // Retrieve communication frequency by type
 exports.getCommunicationFrequency = async (req, res) => {
   try {
@@ -104,9 +110,13 @@ exports.getCommunicationFrequency = async (req, res) => {
       }
     ]);
 
+    if (frequencyData.length === 0) {
+      return res.status(404).json({ message: "No communication data found" });
+    }
+
     res.status(200).json(frequencyData);
   } catch (error) {
-    console.error("Error fetching frequency data:", error);  // More detailed logging
+    console.error("Error fetching frequency data:", error);
     res.status(500).json({
       message: "Error fetching communication frequency",
       error: error.message || error,
