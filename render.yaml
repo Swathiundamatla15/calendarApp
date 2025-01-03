@@ -5,7 +5,6 @@ services:
     branch: master
     buildCommand: cd backend && npm install
     startCommand: cd backend && npm start
-    plan: free-tier
     region: oregon
 
   - type: web
@@ -13,5 +12,4 @@ services:
     branch: master
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
-    plan: free-tier
     runtime: static
