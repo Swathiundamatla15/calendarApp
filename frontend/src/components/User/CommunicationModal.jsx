@@ -17,7 +17,9 @@ const CommunicationModal = ({
   useEffect(() => {
     console.log('Received companyId:', companyId);
     if (!companyId) {
-      setErrorMessage('Error: Company ID is missing. Please select a valid company.');
+      setErrorMessage(
+        'Error: Company ID is missing. Please select a valid company.'
+      );
     }
   }, [companyId]);
 
@@ -41,7 +43,8 @@ const CommunicationModal = ({
       onRequestClose();
     } catch (error) {
       setErrorMessage(
-        error.response?.data?.message || 'An error occurred while logging communication.'
+        error.response?.data?.message ||
+          'An error occurred while logging communication.'
       );
     }
   };
