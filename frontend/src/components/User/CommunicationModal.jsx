@@ -17,16 +17,12 @@ const CommunicationModal = ({
   useEffect(() => {
     console.log('Received companyId:', companyId);
     if (!companyId) {
-      console.error(
-        'Error: Missing companyId. Make sure it is passed from the parent component.'
-      );
+      setErrorMessage('Error: Company ID is missing. Please select a valid company.');
     }
   }, [companyId]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    // Prevent submission if companyId is missing
     if (!companyId) {
       setErrorMessage('Company ID is missing! Please select a valid company.');
       return;
@@ -39,16 +35,13 @@ const CommunicationModal = ({
       notes,
     };
 
-    console.log('Submitting Communication Data:', communicationData);
-
     try {
       await logCommunication(communicationData);
       setErrorMessage('');
       onRequestClose();
     } catch (error) {
-      console.error('Error while logging communication:', error);
       setErrorMessage(
-        error.message || 'An error occurred while logging communication.'
+        error.response?.data?.message || 'An error occurred while logging communication.'
       );
     }
   };
@@ -79,7 +72,6 @@ const CommunicationModal = ({
         </div>
       )}
       <form onSubmit={handleSubmit} className="space-y-4">
-        {/* Communication Type */}
         <div className="mb-4">
           <label
             htmlFor="communicationType"
@@ -103,7 +95,6 @@ const CommunicationModal = ({
           </select>
         </div>
 
-        {/* Date Input */}
         <div className="mb-4">
           <label htmlFor="date" className="block text-lg mb-2 text-gray-300">
             Date:
@@ -118,7 +109,6 @@ const CommunicationModal = ({
           />
         </div>
 
-        {/* Notes Section */}
         <div className="mb-4">
           <label htmlFor="notes" className="block text-lg mb-2 text-gray-300">
             Notes:
@@ -131,7 +121,6 @@ const CommunicationModal = ({
           />
         </div>
 
-        {/* Action Buttons */}
         <div className="flex justify-end space-x-4">
           <button
             type="button"
@@ -155,7 +144,7 @@ const CommunicationModal = ({
 CommunicationModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   onRequestClose: PropTypes.func.isRequired,
-  companyId: PropTypes.string.isRequired,
+  companyId: PropTypes.string,
   existingCommunications: PropTypes.array,
 };
 
