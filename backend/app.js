@@ -1,22 +1,26 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const cors = require("cors");
+const cors = require("cors");  // Import CORS
 const companyRoutes = require("./routes/companyRoutes");
 const communicationRoutes = require("./routes/communicationRoutes");
 const authRoutes = require("./routes/authRoutes");
-require("dotenv").config(); // Load environment variables
 
 const app = express();
 
+// Enable CORS for your frontend (replace with your Netlify frontend URL)
+app.use(cors({
+  origin: 'https://yourfrontend.netlify.app', // Allow requests from your frontend domain
+  methods: ['GET', 'POST'], // Adjust allowed methods as necessary
+  credentials: true,  // Allow cookies to be sent if needed
+}));
+
 // Middleware
-app.use(cors()); // Enable CORS
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // Parse JSON bodies
 
 // Routes
 app.use("/api/companies", companyRoutes);
 app.use("/api/communications", communicationRoutes);
 app.use("/api/auth", authRoutes);
-
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -24,4 +28,4 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
-module.exports = app;
+module.exports = app;  // Export app for use in server.js
