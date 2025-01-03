@@ -9,8 +9,9 @@ const app = express();
 
 // Enable CORS for your frontend (replace with your Netlify frontend URL)
 app.use(cors({
-  origin: 'https://swathi-calendar-app1.netlify.app', // Allow requests from your frontend domain
-  methods: ['GET', 'POST'], // Adjust allowed methods as necessary
+  origin: 'https://swathi-calendar-app1.netlify.app', // Allow only this frontend URL
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow required methods
+
   credentials: true,  // Allow cookies to be sent if needed
 }));
 
