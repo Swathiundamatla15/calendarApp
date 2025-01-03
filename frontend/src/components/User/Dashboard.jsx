@@ -83,7 +83,7 @@ const Dashboard = () => {
         <CommunicationModal
           isOpen={isModalOpen}
           onRequestClose={handleCloseModal}
-          company={selectedCompany}
+          companyId={selectedCompany?._id}
         />
       )}
     </div>
