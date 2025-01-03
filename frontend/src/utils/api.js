@@ -1,5 +1,4 @@
-const API_URL = 'https://calendarapp-1.onrender.com/api';  // Replace with your actual Render backend URL
-
+const API_URL = 'https://calendarapp-1.onrender.com/api'; // Replace with your actual Render backend URL
 
 // Fetch communications from the server
 export const fetchCommunications = async () => {
@@ -235,8 +234,8 @@ export const logCommunication = async (communicationData) => {
       console.error(errorMessage);
 
       // Capture the error details from the response
-      const errorData = await response.text();  // Get detailed error message from the server
-      console.error('Error response from server:', errorData);  // Log the error from the server
+      const errorData = await response.text(); // Get detailed error message from the server
+      console.error('Error response from server:', errorData); // Log the error from the server
       throw new Error(errorMessage);
     }
 

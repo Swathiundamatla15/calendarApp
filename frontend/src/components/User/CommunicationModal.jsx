@@ -3,7 +3,12 @@ import PropTypes from 'prop-types';
 import Modal from 'react-modal';
 import { logCommunication } from '../../utils/api';
 
-const CommunicationModal = ({ isOpen, onRequestClose, companyId, existingCommunications }) => {
+const CommunicationModal = ({
+  isOpen,
+  onRequestClose,
+  companyId,
+  existingCommunications,
+}) => {
   const [communicationType, setCommunicationType] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
