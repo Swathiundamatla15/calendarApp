@@ -14,3 +14,4 @@ services:
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
     plan: free
+    runtime: static
