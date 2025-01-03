@@ -229,11 +229,15 @@ export const logCommunication = async (communicationData) => {
       },
       body: JSON.stringify(communicationData),
     });
+
     if (!response.ok) {
       const errorMessage = `Failed to log communication: ${response.status} ${response.statusText}`;
       console.error(errorMessage);
+      const errorData = await response.text(); // To capture more detailed error message from server
+      console.error('Error response from server:', errorData);
       throw new Error(errorMessage);
     }
+
     return await response.json();
   } catch (error) {
     console.error('Network error:', error);
