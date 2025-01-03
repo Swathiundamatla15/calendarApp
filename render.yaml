@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: calendar-backend
+    env: node
+    branch: master
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    plan: free
+    region: oregon
+
+  - type: web
+    name: calendar-frontend
+    env: static
+    branch: master
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/build
+    plan: free
+    region: oregon
