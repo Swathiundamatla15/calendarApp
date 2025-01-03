@@ -233,8 +233,10 @@ export const logCommunication = async (communicationData) => {
     if (!response.ok) {
       const errorMessage = `Failed to log communication: ${response.status} ${response.statusText}`;
       console.error(errorMessage);
-      const errorData = await response.text(); // To capture more detailed error message from server
-      console.error('Error response from server:', errorData);
+
+      // Capture the error details from the response
+      const errorData = await response.text();  // Get detailed error message from the server
+      console.error('Error response from server:', errorData);  // Log the error from the server
       throw new Error(errorMessage);
     }
 
