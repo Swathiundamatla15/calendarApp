@@ -144,11 +144,11 @@ const CommunicationModal = ({
   );
 };
 
-CommunicationModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  onRequestClose: PropTypes.func.isRequired,
-  companyId: PropTypes.string,
-  existingCommunications: PropTypes.array,
-};
+<CommunicationModal
+  isOpen={modalOpen}
+  onRequestClose={closeModal}
+  companyId={selectedCompanyId} // Ensure this prop is correctly passed
+  existingCommunications={communications}
+/>;
 
 export default CommunicationModal;
