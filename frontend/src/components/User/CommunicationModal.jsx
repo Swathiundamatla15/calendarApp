@@ -12,7 +12,6 @@ const CommunicationModal = ({
   const [communicationType, setCommunicationType] = useState('');
   const [date, setDate] = useState('');
   const [notes, setNotes] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,14 +21,8 @@ const CommunicationModal = ({
       date,
       notes,
     };
-
-    try {
-      await logCommunication(communicationData);
-      setErrorMessage(''); // Clear any previous errors
-      onRequestClose(); // Close the modal after logging communication
-    } catch (error) {
-      setErrorMessage(error.message); // Display error message in the modal
-    }
+    await logCommunication(communicationData);
+    onRequestClose(); // Close the modal after logging communication
   };
 
   useEffect(() => {
@@ -38,7 +31,6 @@ const CommunicationModal = ({
       setCommunicationType('');
       setDate('');
       setNotes('');
-      setErrorMessage(''); // Reset error message
     }
   }, [existingCommunications, isOpen]);
 
@@ -53,11 +45,6 @@ const CommunicationModal = ({
       <h2 className="text-2xl font-semibold text-white mb-6">
         Log Communication
       </h2>
-      {errorMessage && (
-        <div className="text-red-500 mb-4">
-          <strong>Error:</strong> {errorMessage}
-        </div>
-      )}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div className="mb-4">
           <label
