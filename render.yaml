@@ -8,11 +8,9 @@ services:
     plan: free
     region: oregon
 
-  - type: web
+  - type: static
     name: calendar-frontend
-    env: static
     branch: master
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: frontend/build
     plan: free
-    region: oregon
